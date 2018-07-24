@@ -38,6 +38,11 @@ module.exports = function askCreator(template = '') {
       name   : 'author',
       message: 'author',
       default: email
+    },
+    {
+      type: 'confirm',
+      message: "Use sass?",
+      default: false
     }
   ];
 }
