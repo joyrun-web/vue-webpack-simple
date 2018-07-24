@@ -40,7 +40,8 @@ module.exports = function askCreator(template = '') {
       default: email
     },
     {
-      type: 'confirm',
+      type   : 'confirm',
+      name   : 'sass',
       message: "Use sass?",
       default: false
     }
