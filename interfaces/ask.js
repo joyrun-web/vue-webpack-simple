@@ -1,11 +1,11 @@
 const execSync = require('child_process').execSync;
 
 module.exports = function askCreator(template = '') {
-  let user = execSync('git config --global user.name', { encoding: 'utf-8' });
+  let name = execSync('git config --global user.name', { encoding: 'utf-8' });
   let email = execSync('git config --global user.email', { encoding: 'utf-8' });
 
-  user = user.trim();
-  email = email.trim();
+  name = (name && JSON.stringify(name.toString().trim()).slice(1, -1)) || ''
+  email = (email && (' <' + email.toString().trim() + '>')) || ''
 
   return [
     {
@@ -13,7 +13,7 @@ module.exports = function askCreator(template = '') {
       name   : 'name',
       message: 'Project name',
       default: template,
-      validate(input) {
+      validate (input) {
         const done = this.async();
         if (input.trim().length === 0) {
           done('project name is empty');
@@ -24,7 +24,7 @@ module.exports = function askCreator(template = '') {
     },
     {
       type   : 'input',
-      name   : 'Project description',
+      name   : 'description',
       message: 'description',
       default: 'A Vue.js project'
     },
@@ -41,9 +41,61 @@ module.exports = function askCreator(template = '') {
     },
     {
       type   : 'confirm',
-      name   : 'sass',
-      message: "Use sass?",
-      default: false
+      name   : 'lint',
+      message: 'Use ESLint to lint your code?',
+      default: true
+    },
+    {
+      when: 'lint',
+      type: 'list',
+      name: 'lintConfig',
+      message: 'Pick an ESLint preset',
+      choices: [
+        {
+          name: 'Standard (https://github.com/standard/standard)',
+          value: 'standard',
+          short: 'Standard'
+        }
+      ]
+    },
+    {
+      type: 'list',
+      name: 'cssPerprocessor',
+      message: 'Whether or not to use css perprocessor?',
+      choices: [
+        {
+          name: 'yes, use less',
+          value: 'less',
+          short: 'less'
+        },
+        {
+          name: 'yes, use sass',
+          value: 'sass',
+          short: 'sass'
+        },
+        {
+          name: 'no',
+          value: 'none',
+          short: 'none'
+        }
+      ]
+    },
+    {
+      type: 'list',
+      name: 'animateType',
+      message: 'animation type when the router change',
+      choices: [
+        {
+          name: 'fade (fade in and fade out)',
+          value: 'fade',
+          short: 'fade'
+        },
+        {
+          name: 'none (no animation)',
+          value: 'none',
+          short: 'none'
+        }
+      ]
     }
   ];
 }
