@@ -59,6 +59,19 @@ module.exports = function askCreator(template = '') {
       ]
     },
     {
+      type: 'input',
+      name: 'shareHost',
+      message: 'share url host in wechat',
+      validate (input) {
+        const done = this.async()
+        if (input.trim().length === 0) {
+          done('share url is empty')
+          return
+        }
+        done(null, true)
+      }
+    },
+    {
       type: 'list',
       name: 'cssPerprocessor',
       message: 'Whether or not to use css perprocessor?',
