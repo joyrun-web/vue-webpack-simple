@@ -47,7 +47,7 @@ export default {
     width: 100%;
   }
   body, html {
-    font-family: 'FZHei-B01S', 'Hiragino Sans GB', 'Microsoft Yahei', 'Helvetica Neue', 'Luxi Sans', 'DejaVu Sans', Tahoma, STHeiti, Arial, Helvetica, sans-serif;
+    font-family: "PingFang SC", Verdana, "Helvetica Neue", "Microsoft Yahei", "Hiragino Sans GB", "Microsoft Sans Serif", "WenQuanYi Micro Hei", sans-serif;
   }
   body {
     color: #fff;
@@ -91,8 +91,10 @@ export default {
   }
   * {
     box-sizing: border-box;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    /* 字体抗锯齿 */
+    -webkit-font-smoothing: antialiased;
   }
-  * { -webkit-tap-highlight-color: rgba(0, 0, 0, 0); }
 
   {{#if_eq animateType "fade"}};
   /* router fade */
