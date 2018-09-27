@@ -96,7 +96,7 @@ export default {
     -webkit-font-smoothing: antialiased;
   }
 
-  {{#if_eq animateType "fade"}};
+  {{#if_eq animateType "fade"}}
   /* router fade */
   .fade-enter-active, .fade-leave-active {
     transition: opacity 0.3s
@@ -118,6 +118,17 @@ export default {
     clear: both;
   }
   .clearfix { *zoom: 1; }
+
+  /*  ------------- overwrite minit ui default css ------------ */
+  .mint-spinner-snake {
+    border: 2px solid transparent !important;
+    border-top-color: rgb(204, 204, 204) !important;
+    border-left-color: rgb(204, 204, 204) !important;
+    border-bottom-color: rgb(204, 204, 204) !important;
+  }
+  .mint-indicator-wrapper {
+    z-index: 9999 !important;
+  }
 
   /* -- media query -- */
   @media screen and (max-width: 321px) {
