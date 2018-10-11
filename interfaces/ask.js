@@ -8,20 +8,20 @@ module.exports = function askCreator(template = '') {
   email = (email && (' <' + email.toString().trim() + '>')) || ''
 
   return [
-    {
-      type   : 'input',
-      name   : 'name',
-      message: 'Project name',
-      default: template,
-      validate (input) {
-        const done = this.async();
-        if (input.trim().length === 0) {
-          done('project name is empty');
-          return;
-        }
-        done(null, true);
-      }
-    },
+    // {
+    //   type   : 'input',
+    //   name   : 'name',
+    //   message: 'Project name',
+    //   default: template,
+    //   validate (input) {
+    //     const done = this.async();
+    //     if (input.trim().length === 0) {
+    //       done('project name is empty');
+    //       return;
+    //     }
+    //     done(null, true);
+    //   }
+    // },
     {
       type   : 'input',
       name   : 'description',
