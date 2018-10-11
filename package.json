@@ -16,7 +16,7 @@
     "vue-router": "^3.0.1",
     "mint-ui": "^2.2.13",
     "babel-polyfill": "^6.26.0",
-    "better-scroll": "^1.13.0",
+    "better-scroll": "^1.13.0"
   },
   "browserslist": [
     "> 1%",
