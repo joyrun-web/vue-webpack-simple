@@ -1,27 +1,13 @@
 const execSync = require('child_process').execSync;
 
 module.exports = function askCreator(template = '') {
-  let name = execSync('git config --global user.name', { encoding: 'utf-8' });
-  let email = execSync('git config --global user.email', { encoding: 'utf-8' });
+  let name = execSync('git config --get user.name');
+  let email = execSync('git config --get user.email');
 
   name = (name && JSON.stringify(name.toString().trim()).slice(1, -1)) || ''
   email = (email && (' <' + email.toString().trim() + '>')) || ''
 
   return [
-    // {
-    //   type   : 'input',
-    //   name   : 'name',
-    //   message: 'Project name',
-    //   default: template,
-    //   validate (input) {
-    //     const done = this.async();
-    //     if (input.trim().length === 0) {
-    //       done('project name is empty');
-    //       return;
-    //     }
-    //     done(null, true);
-    //   }
-    // },
     {
       type   : 'input',
       name   : 'description',
@@ -46,7 +32,9 @@ module.exports = function askCreator(template = '') {
       default: true
     },
     {
-      when: 'lint',
+      when: function (response) {
+        return response.lint
+      },
       type: 'list',
       name: 'lintConfig',
       message: 'Pick an ESLint preset',
